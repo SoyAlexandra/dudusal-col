@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dudusal | Conservas & Antipasto Gourmet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-red: #D32F2F;
+      --dark-red: #9A0007;
+      --cream-bg: #FDFBF7;
+      --sage-green: #7A9A60;
+      --sage-light: #F2F7EF;
+      --charcoal: #2C2C2C;
+      --white: #FFFFFF;
+      --whatsapp-green: #25D366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* Patrón a cuadros Gingham superior */
+    .gingham-bar {
+      height: 16px;
+      background-color: #e53935;
+      background-image: 
+        linear-gradient(90deg, rgba(255,255,255,.4) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,.4) 50%, transparent 50%);
+      background-size: 16px 16px;
+    }
+
+    header {
+      background: var(--white);
+      text-align: center;
+      padding: 2rem 1rem;
+      border-bottom: 2px dashed #E0E0E0;
+    }
+
+    .logo-container img {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      margin-top: 0.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--sage-light);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid #E0EBD9;
+    }
+
+    .hero h1 {
+      color: var(--primary-red);
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* 1. SECCIÓN DE PRODUCTOS (ARRIBA) */
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border: 1px solid #EAEAEA;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .product-img-container {
+      width: 100%;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .product-img-container img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .product-title {
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-red);
+    }
+
+    /* 2. SECCIÓN DE POSTS DE USO / SERVIR (ABAJO) */
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: var(--white);
+      border: 2px solid var(--primary-red);
+      color: var(--primary-red);
+      padding: 0.6rem 1.5rem;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary-red);
+      color: var(--white);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .post-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #EAEAEA;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .post-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .post-content {
+      padding: 1.2rem;
+    }
+
+    .post-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sage-green);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .post-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .post-excerpt {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-red);
+      cursor: pointer;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    /* 3. MODAL (PANTALLA FLOTANTE PARA VER LA PROPUESTA COMPLETA) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: var(--white);
+      border-radius: 16px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .close-modal:hover { color: var(--charcoal); }
+
+    .modal-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1.2rem;
+    }
+
+    .modal-body h2 {
+      color: var(--primary-red);
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* BOTÓN FLOTANTE DE WHATSAPP */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gingham-bar"></div>
+
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Dudusal Logo" onerror="this.onerror=null; this.src='https://soyalexandra.github.io/Dudusal/img/logo.png'">
+    </div>
+    <div class="tagline">Dulce & Sal Gourmet</div>
+  </header>
+
+  <main class="container">
+    
+    <section class="hero">
+      <h1>Sabores Especiales para Compartir y Celebrar</h1>
+      <p>Disfruta nuestras recetas artesanales sin preservantes. Explora cómo servirlas en tus eventos festivos o en tu casa.</p>
+    </section>
+
+    <!-- PRODUCTOS ARRIBA -->
+    <h2 class="section-title">Nuestras Conservas</h2>
+    <div class="products-grid">
+      
+      <!-- Antipasto -->
+      <article class="product-card">
+        <div class="product-img-container">
+          <img src="images/antipasto.jpg" alt="Conserva de Antipasto Gourmet">
+        </div>
+        <h3 class="product-title">Conserva de Antipasto</h3>
+        <div class="product-price">$26.000 COP</div>
+      </article>
+
+      <!-- Agraz -->
+      <article class="product-card">
+        <div class="product-img-container">
+          <img src="images/agraz.jpg" alt="Conserva Gourmet de Agraz">
+        </div>
+        <h3 class="product-title">Conserva Gourmet de Agraz</h3>
+        <div class="product-price">$22.000 COP</div>
+      </article>
+
+      <!-- Uchuva -->
+      <article class="product-card">
+        <div class="product-img-container">
+          <img src="images/uchuva.jpg" alt="Conserva Gourmet de Uchuva">
+        </div>
+        <h3 class="product-title">Conserva Gourmet de Uchuva</h3>
+        <div class="product-price">$22.000 COP</div>
+      </article>
+
+    </div>
+
+    <!-- SUGERENCIAS / POSTS ABAJO -->
+    <h2 class="section-title">Propuestas para Servir & Maridaje</h2>
+    
+    <div class="tabs-container">
+      <button class="tab-btn active" onclick="filterCategory('all', event)">Ver Todo</button>
+      <button class="tab-btn" onclick="filterCategory('antipasto', event)">Antipasto</button>
+      <button class="tab-btn" onclick="filterCategory('frutas', event)">Conservas de Fruta</button>
+    </div>
+
+    <div class="posts-grid" id="postsGrid">
+      
+      <!-- Post 1 -->
+      <article class="post-card" data-category="antipasto" onclick="openModal('post1')">
+        <img src="images/uso-vino.jpg" alt="Antipasto con Copa de Vino" class="post-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80'">
+        <div class="post-content">
+          <div class="post-tag">Antipasto</div>
+          <h3 class="post-title">Cena romántica en 5 minutos</h3>
+          <p class="post-excerpt">La solución perfecta para una noche gourmet. El equilibrio crujiente de las galletas con la acidez suave del antipasto...</p>
+          <span class="read-more" onclick="event.stopPropagation(); openModal('post1')">Leer propuesta completa →</span>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post-card" data-category="antipasto" onclick="openModal('post2')">
+        <img src="images/uso-quesos.jpg" alt="Tabla de Quesos" class="post-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1631379578550-7038263db699?auto=format&fit=crop&w=600&q=80'">
+        <div class="post-content">
+          <div class="post-tag">Antipasto</div>
+          <h3 class="post-title">Tablas de Quesos & Antipasto</h3>
+          <p class="post-excerpt">Eleva tus preparaciones festivas. Sirve el frasco directamente en la tabla rodeado de quesos madurados, jamones y buen gusto...</p>
+          <span class="read-more" onclick="event.stopPropagation(); openModal('post2')">Leer propuesta completa →</span>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="post-card" data-category="antipasto" onclick="openModal('post3')">
+        <img src="images/uso-pastas.jpg" alt="Pastas con Antipasto" class="post-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1621996346565-e3d5d6281293?auto=format&fit=crop&w=600&q=80'">
+        <div class="post-content">
+          <div class="post-tag">Antipasto</div>
+          <h3 class="post-title">Topping para Pastas & Raviolis</h3>
+          <p class="post-excerpt">Una cena rápida y elegante. Agrega unas cucharadas de antipasto sobre tu pasta recién salida para darle sazón...</p>
+          <span class="read-more" onclick="event.stopPropagation(); openModal('post3')">Leer propuesta completa →</span>
+        </div>
+      </article>
+
+      <!-- Post 4 -->
+      <article class="post-card" data-category="frutas" onclick="openModal('post4')">
+        <img src="images/uso-natilla.jpg" alt="Conservas con Natilla y Cuajada" class="post-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80'">
+        <div class="post-content">
+          <div class="post-tag">Agraz & Uchuva</div>
+          <h3 class="post-title">Postres Tradicionales: Natilla & Cuajada</h3>
+          <p class="post-excerpt">Acompaña un bocado de cuajada o natilla con la acidez agridulce del agraz o uchuva, delicia tradicional con frutas exóticas...</p>
+          <span class="read-more" onclick="event.stopPropagation(); openModal('post4')">Leer propuesta completa →</span>
+        </div>
+      </article>
+
+      <!-- Post 5 -->
+      <article class="post-card" data-category="frutas" onclick="openModal('post5')">
+        <img src="images/uso-parfait.jpg" alt="Parfait de Frutas" class="post-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80'">
+        <div class="post-content">
+          <div class="post-tag">Agraz & Uchuva</div>
+          <h3 class="post-title">Parfaits & Postres Helados</h3>
+          <p class="post-excerpt">Crea capas en postres favoritos con una conserva natural gourmet que los elevarán de nivel...</p>
+          <span class="read-more" onclick="event.stopPropagation(); openModal('post5')">Leer propuesta completa →</span>
+        </div>
+      </article>
+
+      <!-- Post 6 -->
+      <article class="post-card" data-category="frutas" onclick="openModal('post6')">
+        <img src="images/uso-regalo.jpg" alt="Canasta Gourmet Dudusal" class="post-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80'">
+        <div class="post-content">
+          <div class="post-tag">Regalos & Anchetas</div>
+          <h3 class="post-title">¡Llega con elegancia y sabor!</h3>
+          <p class="post-excerpt">Incluir DUDUSAL es la opción ideal para agradecer una invitación o regalar, no sólo alegras sino deleitas con tu llegada...</p>
+          <span class="read-more" onclick="event.stopPropagation(); openModal('post6')">Leer propuesta completa →</span>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- MODAL DE DETALLES -->
+  <div class="modal-overlay" id="postModal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModalDirect()">&times;</span>
+      <img id="modalImg" class="modal-img" src="" alt="Imagen de la propuesta">
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a href="https://wa.me/573000000000?text=Hola%20Dudusal,%20quisiera%20pedir%20información%20sobre%20sus%20conservas." class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+    💬
+  </a>
+
+  <script>
+    const postsData = {
+      post1: {
+        title: "Una cena romántica en 5 minutos",
+        tag: "Antipasto Gourmet",
+        img: "images/uso-vino.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80",
+        content: `
+          <p>¿Quién dijo que una cena especial tiene que ser complicada?</p>
+          <p>A veces, los mejores momentos se preparan en cinco minutos.</p>
+          <p>Imagina una copa de vino, unas galletas saladas, un buen queso madurado y nuestro antipasto. Una combinación sencilla, deliciosa y perfecta para compartir.</p>
+          <p>Con un frasco de antipasto de 250 gramos tienes la cantidad ideal para dos personas: 125 gramos por porción.</p>
+          <hr style="border: 0; border-top: 1px dashed #DDD; margin: 1.5rem 0;">
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">Cómo servirlo</h3>
+          <p><strong>Ingredientes (para 2 personas):</strong></p>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.2rem; line-height: 1.8;">
+            <li>1 frasco de antipasto Dudusal (250 g).</li>
+            <li>1 proteína de tu gusto, puede ser atún -opcional- (150 g).</li>
+            <li>Galletas saladas al gusto.</li>
+            <li>2 porciones de queso madurado (manchego, parmesano o gouda añejo).</li>
+            <li>2 copas de vino (tinto o blanco, según tu preferencia).</li>
+          </ul>
+          <p><strong>Preparación (5 minutos reales):</strong></p>
+          <ol style="margin-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+            <li>Sirve 125 gramos de antipasto en cada plato o en pequeños recipientes de cerámica, añade (opcional) la proteína de tu gusto.</li>
+            <li>Corta el queso madurado en láminas o pequeños cubos.</li>
+            <li>Acompaña con una buena porción de galletas saladas.</li>
+            <li>Sirve el vino, prepara el ambiente y ¡a disfrutar!</li>
+          </ol>
+          <p><strong>El resultado:</strong> Una cena ligera, llena de sabor gourmet, elegante y sin complicaciones.</p>
+          <p style="font-style: italic; color: #555; margin-top: 1rem;">
+            Porque a veces no necesitas cocinar para sorprender. Solo necesitas buenos ingredientes y alguien con quien compartirlos. ❤️
+          </p>
+        `
+      },
+      post2: {
+        title: "Tablas de Quesos & Antipasto",
+        tag: "Antipasto Gourmet",
+        img: "images/uso-quesos.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1631379578550-7038263db699?auto=format&fit=crop&w=700&q=80",
+        content: `
+          <p>🧀 <strong>¿Qué sería de una buena tabla de quesos sin un buen antipasto?</strong></p>
+          <p>Una tabla de quesos es mucho más que poner diferentes quesos sobre una bandeja. El secreto está en combinar sabores, texturas y colores.</p>
+          <p>Te compartimos nuestra fórmula para preparar una tabla irresistible:</p>
+          <hr style="border: 0; border-top: 1px dashed #DDD; margin: 1.5rem 0;">
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">¿Qué necesitas?</h3>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.2rem; line-height: 1.8; list-style: none;">
+            <li>🧀 <strong>Quesos:</strong> Manchego, parmesano, brie, gouda o un queso madurado, azul.</li>
+            <li>🥓 <strong>Jamones:</strong> Prosciutto, serrano o salami.</li>
+            <li>🍇 <strong>Frutas:</strong> Uvas, fresas, arándanos, higos, peras o manzanas.</li>
+            <li>🥨 <strong>Acompañamientos:</strong> Galletas saladas, tostadas y pan baguette.</li>
+            <li>❤️ <strong>El ingrediente protagonista:</strong> Nuestro antipasto DUDUSAL de 250 g.</li>
+          </ul>
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">¿Cómo prepararla?</h3>
+          <ol style="margin-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+            <li>Coloca el antipasto en un recipiente bonito en el centro de la tabla.</li>
+            <li>Distribuye los quesos en diferentes formas: cubos, láminas y triángulos.</li>
+            <li>Enrolla los jamones y distribúyelos alrededor.</li>
+            <li>Agrega frutas frescas para aportar color y contraste.</li>
+            <li>Completa los espacios con galletas, tostadas y láminas de parmesano.</li>
+          </ol>
+          <p><strong>¡Y listo!</strong> Una tabla llena de color, sabor y variedad para compartir.</p>
+          <p style="font-style: italic; color: #555; margin-top: 1rem;">
+            Porque una buena reunión merece buenos sabores. Y una buena tabla de quesos siempre sabe mejor con DUDUSAL. ❤️
+          </p>
+        `
+      },
+      post3: {
+        title: "Pasta & Raviolis con Antipasto DUDUSAL",
+        tag: "Antipasto Gourmet",
+        img: "images/uso-pastas.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1621996346565-e3d5d6281293?auto=format&fit=crop&w=700&q=80",
+        content: `
+          <p>🍝 <strong>El secreto:</strong> Nuestro antipasto DUDUSAL convierte una pasta sencilla en un plato elegante, saludable y lleno de sabor sin complicaciones.</p>
+          <p>Su base de salsa de tomate natural aporta la jugosidad perfecta para envolver cada porción.</p>
+          <hr style="border: 0; border-top: 1px dashed #DDD; margin: 1.5rem 0;">
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">Ingredientes (4 personas)</h3>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.2rem; line-height: 1.8;">
+            <li>250 g de pasta seca (espagueti, tornillos o raviolis).</li>
+            <li>1 frasco de antipasto DUDUSAL de 250 g.</li>
+            <li>2 o 3 gotas de aceite de oliva.</li>
+            <li>Una pizca de sal.</li>
+            <li>Queso parmesano rallado al gusto.</li>
+            <li>Pan baguette en rodajas.</li>
+          </ul>
+          <p><strong>Proteína opcional:</strong></p>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.2rem; line-height: 1.8;">
+            <li>70 g de atún, pollo desmechado o chorizo en trocitos.</li>
+            <li><em>También puedes disfrutarla en su versión vegetariana, sin proteína adicional.</em> 🌱</li>
+          </ul>
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">Preparación</h3>
+          <ol style="margin-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+            <li>Pon suficiente agua a hervir en una olla. Agrega una pizca de sal y 2 o 3 gotas de aceite de oliva.</li>
+            <li>Incorpora la pasta y cocina durante aproximadamente 10 minutos (o según el empaque) hasta el punto de tu preferencia: al dente o bien cocida.</li>
+            <li>Escurre la pasta y distribúyela en cuatro platos.</li>
+            <li>Calienta ligeramente el antipasto DUDUSAL y sírvelo directamente sobre la pasta caliente.</li>
+            <li>Si deseas, incorpora el atún, pollo desmechado o chorizo previamente cocinado.</li>
+            <li>Termina con queso parmesano rallado por encima y acompaña con rodajas de pan baguette.</li>
+          </ol>
+          <p><strong>Para acompañar:</strong></p>
+          <p>Puedes servir una copa de vino tinto o una bebida refrescante, como jugo natural de maracuyá o lulo.</p>
+          <p style="font-style: italic; color: #555; margin-top: 1.2rem;">
+            ¡Y listo! Una comida deliciosa, con sabor casero y preparada en minutos. ❤️
+          </p>
+        `
+      },
+    post4: {
+        title: "El Toque Tradicional: Natilla & Cuajada Gourmet",
+        tag: "Conservas de Agraz & Uchuva",
+        img: "images/uso-natilla.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80",
+        content: `
+          <p>🎄 <strong>Dale un toque diferente a tus postres tradicionales</strong></p>
+          
+          <p>La natilla y la cuajada hacen parte de esos sabores que nos reúnen alrededor de la mesa. En estas fiestas, eleva tus recetas de siempre con una combinación gourmet irresistible.</p>
+          
+          <hr style="border: 0; border-top: 1px dashed #DDD; margin: 1.5rem 0;">
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">Nuestras combinaciones estrella:</h3>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.2rem; line-height: 1.8; list-style: none;">
+            <li>❤️ <strong>Cuajada + Conserva de Agraz + Arequipe:</strong> Una mezcla perfecta entre la tradición láctea, la dulzura del arequipe y la acidez silvestre del agraz.</li>
+            <li>💛 <strong>Natilla + Conserva de Uchuva:</strong> Una combinación diferente con un toque frutal, brillante y ligeramente cítrico que sorprende al paladar.</li>
+          </ul>
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">¿Cómo servirlo?</h3>
+          <ol style="margin-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+            <li>Sirve una tajada generosa de cuajada fresca o natilla blanca tradicional.</li>
+            <li>Corona con 1 o 2 cucharadas de nuestra conserva de Agraz o Uchuva.</li>
+            <li>Si eliges cuajada, añade un hilo de arequipe por encima para cerrar con broche de oro.</li>
+          </ol>
+
+          <p><strong>Atrévete a probarlos en todos tus postres tradicionales.</strong> Existen muchas razones para compartir y celebrar alrededor de la mesa.</p>
+
+          <p style="font-style: italic; color: #555; margin-top: 1.2rem;">
+            En tus celebraciones y momentos inolvidables, ¡que no falte el sabor de DUDUSAL en tu mesa! ❤️
+          </p>
+        `
+      },
+      post5: {
+        title: "Parfait Gourmet & Postres Helados",
+        tag: "Conservas de Agraz & Uchuva",
+        img: "images/uso-parfait.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80",
+        content: `
+          <p>🍨 <strong>La imaginación es el límite.</strong></p>
+          <p>Las conservas DUDUSAL de agraz y uchuva son perfectas para acompañar postres fríos, cremosos y horneados. Aquí tienes cuatro maneras de disfrutarlas:</p>
+          
+          <hr style="border: 0; border-top: 1px dashed #DDD; margin: 1.5rem 0;">
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.6rem;">1. Parfait de yogur griego y granola</h3>
+          <p><strong>Ingredientes (2 porciones):</strong></p>
+          <ul style="margin-left: 1.2rem; margin-bottom: 0.8rem; line-height: 1.6;">
+            <li>1 taza de yogur griego natural.</li>
+            <li>½ taza de granola.</li>
+            <li>4 cucharadas de conserva de uchuva o agraz DUDUSAL.</li>
+            <li>Fruta fresca al gusto.</li>
+          </ul>
+          <p><strong>Preparación:</strong> En dos copas de cristal, coloca una capa de yogur griego, agrega una capa de granola, incorpora una generosa cucharada de conserva, repite las capas y termina con fruta fresca y conserva.</p>
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.6rem; margin-top: 1.2rem;">2. Helado con topping de conserva</h3>
+          <p><strong>Ingredientes (2 porciones):</strong></p>
+          <ul style="margin-left: 1.2rem; margin-bottom: 0.8rem; line-height: 1.6;">
+            <li>2 bolas de helado de vainilla.</li>
+            <li>3 o 4 cucharadas de conserva de agraz o uchuva DUDUSAL.</li>
+            <li>Almendras o nueces picadas (opcional).</li>
+          </ul>
+          <p><strong>Preparación:</strong> Sirve dos bolas de helado en copas, calienta ligeramente la conserva en el microondas por unos segundos, vierte tibia sobre el helado y decora con almendras o nueces.</p>
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.6rem; margin-top: 1.2rem;">3. Cheesecake individual con conserva</h3>
+          <p><strong>Ingredientes (2 porciones):</strong></p>
+          <ul style="margin-left: 1.2rem; margin-bottom: 0.8rem; line-height: 1.6;">
+            <li>2 porciones individuales de cheesecake.</li>
+            <li>3 cucharadas de conserva de agraz DUDUSAL.</li>
+            <li>Frutos frescos para decorar (opcional).</li>
+          </ul>
+          <p><strong>Preparación:</strong> Sirve cada porción en un plato, coloca una capa generosa de conserva encima dejando que caiga por los bordes y decora con frutos frescos. También puedes hacerlos en vasitos con base de galleta triturada.</p>
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.6rem; margin-top: 1.2rem;">4. Postres cuchareables en frasco</h3>
+          <p><strong>Ingredientes (2 frascos):</strong></p>
+          <ul style="margin-left: 1.2rem; margin-bottom: 0.8rem; line-height: 1.6;">
+            <li>½ taza de galletas trituradas.</li>
+            <li>1 taza de crema de cheesecake, mousse o crema pastelera.</li>
+            <li>4 cucharadas de conserva de uchuva o agraz DUDUSAL.</li>
+            <li>Fruta fresca o chocolate para decorar (opcional).</li>
+          </ul>
+          <p><strong>Preparación:</strong> Coloca galleta triturada en el fondo del frasco, añade crema, luego conserva, repite hasta llenar y refrigera hasta servir.</p>
+
+          <p style="background: var(--sage-light); padding: 12px; border-radius: 8px; margin-top: 1.2rem; font-size: 0.9rem;">
+            💡 <strong>TIP DUDUSAL:</strong> La conserva de agraz aporta un contraste frutal intenso, la de uchuva ofrece un sabor dulce y ácido. Ambas son excelentes para darle personalidad a tus postres.
+          </p>
+        `
+      },
+
+      post6: {
+        title: "🎁 ¡Llega con elegancia y sabor a tus invitaciones!",
+        tag: "Regalos & Anchetas Gourmet",
+        img: "images/uso-regalo.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=700&q=80",
+        content: `
+          <p>Hay regalos que se reciben con una sonrisa y se recuerdan cada vez que se disfrutan.</p>
+          
+          <p>Nuestra canasta gourmet DUDUSAL es una opción muy especial para agradecer una invitación, sorprender a alguien querido o complementar una ancheta navideña.</p>
+          
+          <hr style="border: 0; border-top: 1px dashed #DDD; margin: 1.5rem 0;">
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">Incluye tres sabores para diferentes momentos:</h3>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.2rem; line-height: 1.8; list-style: none;">
+            <li>❤️ <strong>Antipasto:</strong> Perfecto para compartir como entrada en un almuerzo, acompañar una tabla de quesos o complementar una cena.</li>
+            <li>💜 <strong>Conserva de Agraz:</strong> Deliciosa sobre una tostada de pan, acompañando quesos o dándole un toque especial a tus postres.</li>
+            <li>💛 <strong>Conserva de Uchuva:</strong> Ideal para disfrutar en el desayuno, acompañar yogur, helados y preparaciones dulces.</li>
+          </ul>
+
+          <h3 style="color: var(--primary-red); margin-bottom: 0.8rem;">Lo mejor es que quien recibe este detalle se acordará de ti muchas veces:</h3>
+          <ul style="margin-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.8; list-style: none;">
+            <li>☕ Cuando prepare su tostada con conserva y café en la mañana.</li>
+            <li>🥗 Cuando sirva el antipasto para compartir en el almuerzo.</li>
+            <li>🍷 Cuando prepare una entrada especial para la cena.</li>
+            <li>🍨 Cuando disfrute un postre con nuestras conservas.</li>
+          </ul>
+
+          <p><strong>Porque los mejores regalos no solamente se entregan: se disfrutan y se recuerdan.</strong></p>
+          
+          <p style="background: var(--sage-light); padding: 12px; border-radius: 8px; margin-top: 1.2rem; font-size: 0.9rem;">
+            🎁 <strong>DUDUSAL:</strong> Tres sabores, muchos momentos para compartir. Ideal para invitaciones, cumpleaños, anchetas, regalos empresariales y celebraciones especiales.
+          </p>
+        `
+      }
+    };
+
+    function filterCategory(cat, evt) {
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      evt.target.classList.add('active');
+
+      const posts = document.querySelectorAll('.post-card');
+      posts.forEach(post => {
+        if (cat === 'all' || post.getAttribute('data-category') === cat) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    }
+
+    function openModal(postId) {
+      const post = postsData[postId];
+      if (!post) return;
+
+      const modal = document.getElementById('postModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalBody = document.getElementById('modalBody');
+
+      modalImg.src = post.img;
+      modalImg.onerror = function() { 
+        this.onerror = null; 
+        this.src = post.fallbackImg; 
+      };
+
+      modalBody.innerHTML = `
+        <div class="post-tag">${post.tag}</div>
+        <h2>${post.title}</h2>
+        ${post.content}
+      `;
+
+      modal.style.display = 'flex';
+    }
+
+    function closeModal(event) {
+      if (event.target.id === 'postModal') {
+        document.getElementById('postModal').style.display = 'none';
+      }
+    }
+
+    function closeModalDirect() {
+      document.getElementById('postModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
